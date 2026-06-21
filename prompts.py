@@ -15,7 +15,7 @@ Chain-of-thought — step-by-step reasoning, tests schema impact (v9, v10)
 Each prompt expects a Datadog security signal as a JSON-formatted
 string appended to the prompt at runtime by evaluate.py.
  
-Output schema (all structured variants target this):
+Output schema (all structured variants target this JSON format):
 {
     "verdict":              "TRUE_POSITIVE", "FALSE_POSITIVE", or "NEEDS_INVESTIGATION",
     "confidence":          "HIGH", "MEDIUM", or "LOW",
