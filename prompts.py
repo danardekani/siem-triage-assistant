@@ -22,8 +22,23 @@ Output schema (all structured variants target this JSON format):
     "blast_radius":        "Description of affected users, systems, and lateral scope",
     "recommended_action":  "close_as_fp", "investigate_independently", "suspend_session",
                            "escalate_tier2", "legal_hold", or "monitor_and_watch",
-    "action_rationale":    "One sentence explaining why this action, not another",
+    "action_rationale":    "One entence explaining why this action, not another",
     "reasoning":           "Evidence-based logic that drove the verdict",
     "what_would_change_this": "What additional context would flip or strengthen the verdict"   
 }
+
+NOTE on recommended_action values:
+- investigate_independently: Review gateway logs, VPN context, and prior sessions
+  BEFORE engaging the user. SSO sign-ins route through internet gateways that may
+  not reflect the user's physical location — independent verification first.
+- suspend_session: Revoke active session immediately. Used only for high-confidence TPs.
+- close_as_fp: Close and document. Used only for high-confidence FPs.
+- escalate_tier2: Hand off for deeper investigation. For NEEDS_INVESTIGATION verdicts.
+- legal_hold: Preserve artifacts and notify legal. For insider threat scenarios.
+- monitor_and_watch: Flag for observation without action. For low-confidence signals.
 """
+
+# ─────────────────────────────────────────────────────────────
+# Fixed contraints — must be obeyed by all variants.
+# ─────────────────────────────────────────────────────────────
+
