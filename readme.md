@@ -267,6 +267,17 @@ to the TP alerts: when Claude applied the same careful scrutiny to alert 1
 true positive was overwhelming and it called it correctly. One well-chosen
 false positive example improved reasoning quality across all verdict types.
 
+**4. Schema-free variants are consistently the weakest performers**
+ 
+v1 and v9 ranked 8th and 9th respectively. Without a structured output
+constraint, Claude produced narrative responses that did not map
+cleanly to triage decisions. This held true regardless of how
+good the reasoning was — v9's chain-of-thought responses frequently
+contained correct analysis but no parseable verdict. Format constraints
+have proved to be a functional requirement this project, and likely, 
+for any production triage tool.
+
+
 ---
 
 ## Production Recommendation
