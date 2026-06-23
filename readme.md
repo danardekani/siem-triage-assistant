@@ -256,22 +256,16 @@ in the evaluation. This is the starkest finding in the project: in one-shot
 prompting, example selection is critical — is not a minor tuning decision. 
 It determines whether the prompt functions at all.
 
-<!-- PLACEHOLDER: Write 4-5 specific, data-driven findings after running
-     the evaluation. These should be falsifiable statements supported by
-     your scorecard. Avoid vague conclusions.
-
-     Bad:  "Claude performed well on most prompts."
-     Good: "Role-enriched prompting (v8) reduced false positive rate from
-            X% to Y% compared to the zero-shot baseline (v1), driven primarily
-            by the VPN topology context resolving alert DD-SIG-2025-0534."
-
-     Suggested structure:
-     1. Which variant performed best overall and why
-     2. Where zero-shot failed most visibly
-     3. What the one-shot bias experiment revealed
-     4. How confidence calibration varied across techniques
-     5. The most surprising or counterintuitive result
--->
+**3. A single FP example taught better reasoning than a TP example**
+ 
+The intuitive expectation was that v4's FP example would bias Claude toward
+undercalling threats — particularly on the two clear true positives. The
+opposite happened. The FP example taught Claude to look for mitigating
+evidence before rendering a verdict. That reasoning discipline carried over
+to the TP alerts: when Claude applied the same careful scrutiny to alert 1
+(Lagos, no travel notice, unrecognized device, no MFA), the evidence for a
+true positive was overwhelming and it called it correctly. One well-chosen
+false positive example improved reasoning quality across all verdict types.
 
 ---
 
