@@ -235,6 +235,15 @@ wrong verdict is a more serious failure than a low-confidence wrong verdict.
 
 ## Key Findings
 
+**1. Context beats technique**
+ 
+Four variants achieved 100% verdict accuracy, spanning three different
+techniques: one-shot (v4), few-shot (v5, v6), and role-based (v8). The
+common denominator across all four is not which technique was used — it was contenxt.
+Each prompt variant gave Claude some form of context beyond a bare instruction. 
+The three variants that failed to reach 100% (v2, v7, v10) all lacked either examples
+or enriched institutional knowledge.
+
 <!-- PLACEHOLDER: Write 4-5 specific, data-driven findings after running
      the evaluation. These should be falsifiable statements supported by
      your scorecard. Avoid vague conclusions.
