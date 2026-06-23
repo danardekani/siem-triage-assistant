@@ -103,7 +103,7 @@ No examples, no persona, no reasoning instruction. Tests unguided output quality
 
 | Variant | Description |
 |---|---|
-| `v1_zeroshot_baseline` | No schema — Claude formats output freely. True floor. |
+| `v1_zeroshot_baseline` | No schema — raw output |
 | `v2_zeroshot_structured` | Adds output schema. Tests what format constraint alone contributes. |
 
 ### 2. One-shot
