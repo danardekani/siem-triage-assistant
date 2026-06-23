@@ -173,9 +173,22 @@ wrong verdict is a more serious failure than a low-confidence wrong verdict.
 
 ### Verdict Accuracy Leaderboard
 
-```
-<!-- PLACEHOLDER: Paste the leaderboard printed by evaluate.py here -->
-```
+════════════════════════════════════════════════════════════════════════
+  VERDICT ACCURACY LEADERBOARD
+════════════════════════════════════════════════════════════════════════
+  Rank  Variant                        Correct    Accuracy
+────────────────────────────────────────────────────────────────────────
+  1     v1_zeroshot_baseline           2/2        ████████████████████ 100%  ← best
+  2     v4_oneshot_fp                  5/5        ████████████████████ 100%
+  3     v5_fewshot_tp_heavy            5/5        ████████████████████ 100%
+  4     v6_fewshot_balanced            5/5        ████████████████████ 100%
+  5     v8_role_enriched               5/5        ████████████████████ 100%
+  6     v2_zeroshot_structured         4/5        ████████████████░░░░ 80%
+  7     v10_cot_structured             4/5        ████████████████░░░░ 80%
+  8     v7_role_basic                  3/4        ███████████████░░░░░ 75%
+  9     v9_cot_freeform                2/3        █████████████░░░░░░░ 67%
+  10    v3_oneshot_tp                  0/0        ░░░░░░░░░░░░░░░░░░░░ 0%
+════════════════════════════════════════════════════════════════════════
 
 ### Scorecard
 
