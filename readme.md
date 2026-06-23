@@ -1,7 +1,7 @@
 # SIEM Triage Assistant
 
 An LLM-powered analyst decision support tool built on the Anthropic Claude API.
-Designed to augment — not replace — SIEM alert triage by providing structured
+Designed to augment, but not replace SIEM alert triage by providing structured
 reasoning about verdict accuracy, blast radius, and recommended action.
 
 ---
@@ -10,8 +10,8 @@ reasoning about verdict accuracy, blast radius, and recommended action.
 
 SIEMs are excellent at the structured part of security operations: correlating
 events, firing rules, and surfacing alerts. What they do not do is help an
-analyst decide what to do next. Every alert still lands on a human who must
-answer three questions:
+analyst decide what to do next. Every alert still requires human in the loop intervention. 
+A human must answer three questions:
 
 1. Is this a true positive or a false positive?
 2. What is the blast radius — who and what is affected?
