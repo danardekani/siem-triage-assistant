@@ -314,6 +314,36 @@ why the signal did not mean what it appeared to mean.
 
 ---
 
+### Annual Cost Projection
+ 
+Token averages derived from real v8_role_enriched API runs (n=2):
+~1,230 input tokens and ~483 output tokens per call.
+ 
+<details>
+<summary>Pricing: Haiku 4.5 at $1.00 / $5.00 per million tokens</summary>
+| Scenario | Alerts/Day | Alerts/Year | Standard | Batch API (-50%) | Batch + Cache (-52%) |
+|---|---|---|---|---|---|
+| Small SOC | 10 | 3,650 | $13.31 | $6.65 | $6.33 |
+| Mid-size SOC | 50 | 18,250 | $66.53 | $33.27 | $31.65 |
+| Large SOC | 200 | 73,000 | $266.12 | $133.06 | $126.59 |
+| Enterprise | 1,000 | 365,000 | $1,330.61 | $665.30 | $632.97 |
+ 
+</details>
+At $0.0037 per call, an enterprise SOC processing 1,000 identity alerts per day
+spends under $1,331 per year at standard rates — less than 2% of a single Tier 1
+analyst salary. Cost is not a deployment barrier at any scale.
+ 
+**Batch API tradeoff:** The 50% Batch API discount processes requests
+asynchronously within 24 hours. For HIGH severity alerts this latency is
+unacceptable — use the standard synchronous API. For MEDIUM and below, batch
+processing is appropriate and halves the cost.
+ 
+**Model upgrade path:** Sonnet 4.6 costs 3x more than Haiku 4.5 ($3/$15 vs
+$1/$5 per million tokens). At mid-size SOC volume that difference is only
+$133/year — meaning model quality, not cost, should drive any decision to
+upgrade tiers.
+ 
+
 ## What I Would Do Next
 
 
