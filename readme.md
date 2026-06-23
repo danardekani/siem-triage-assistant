@@ -342,7 +342,8 @@ processing is appropriate and halves the cost.
 $1/$5 per million tokens). At mid-size SOC volume that difference is only
 $133/year — meaning model quality, not cost, should drive any decision to
 upgrade tiers.
- 
+
+--- 
 
 ## What I Would Do Next
 
