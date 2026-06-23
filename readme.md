@@ -225,6 +225,28 @@ Claude hedged in ways that produced no clean keyword hit — phrases like
 "this alert warrants closer examination" rather than a discrete verdict.
 These responses could not be scored programmatically.
 
+**v3_oneshot_tp — all 5 responses unparseable (0/0 scored)**
+ 
+Claude produced accurate, well-reasoned triage decisions across all 5 alerts
+but returned markdown reports instead of JSON on every run. The single TP
+example's rich narrative format overrode the explicit output schema instruction.
+This is a format dominance failure: when example style conflicts with schema
+instructions, Claude favors the implicit signal from the example over the
+explicit format constraint that follows it.
+ 
+Sample response structure Claude returned instead of JSON:
+ 
+```
+# SECURITY ALERT TRIAGE REPORT
+## TRIAGE DECISION
+**PRIORITY: HIGH**
+**RECOMMENDATION: ESCALATE & INVESTIGATE IMMEDIATELY**
+## RISK ASSESSMENT
+...
+```
+ 
+The reasoning itself was correct. The format made it completely unparseable.
+
 ---
 
 ## Key Findings
