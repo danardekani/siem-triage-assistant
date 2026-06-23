@@ -244,6 +244,18 @@ Each prompt variant gave Claude some form of context beyond a bare instruction.
 The three variants that failed to reach 100% (v2, v7, v10) all lacked either examples
 or enriched institutional knowledge.
 
+**2. Example selection in one-shot prompting determines whether the prompt
+works at all**
+ 
+v3 and v4 are identical in every respect: same role context, same output
+schema, same instruction wording, same 5 alerts. The only variable is which
+single example was provided. v3 used a true positive example and produced
+0 scoreable results. The format collapsed entirely across all 5 runs. v4 used
+a false positive example and achieved 5/5 correct verdicts, ranking first
+in the evaluation. This is the starkest finding in the project: in one-shot
+prompting, example selection is critical — is not a minor tuning decision. 
+It determines whether the prompt functions at all.
+
 <!-- PLACEHOLDER: Write 4-5 specific, data-driven findings after running
      the evaluation. These should be falsifiable statements supported by
      your scorecard. Avoid vague conclusions.
