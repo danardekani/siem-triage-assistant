@@ -309,24 +309,41 @@ why the signal did not mean what it appeared to mean.
 
 ## Production Recommendation
 
-<!-- PLACEHOLDER: Write your production recommendation after reviewing results.
-     This is the section that demonstrates you think beyond the experiment.
-     A hiring manager reading this should see someone who has already thought
-     about real-world deployment.
-
-     Address:
-     - Which prompt strategy you would deploy and why
-     - What the accuracy-to-cost tradeoff looks like (token counts are in outputs.json)
-     - Whether you would use one strategy for all alerts or vary by severity or rule type
-     - What rule tuning you would recommend based on FP patterns observed
-
-     Example opening:
-     "Based on evaluation results, v8_role_enriched is the recommended production
-     prompt for impossible travel alerts. While v10_cot_structured achieved
-     comparable accuracy, the additional token cost of chain-of-thought reasoning
-     is not justified for alerts where institutional context alone resolves the
-     verdict..."
--->
+For impossible travel and identity-based threat alerts, the recommended
+production prompt strategy is **v8_role_enriched**.
+ 
+v8 achieved 100% verdict accuracy with an average of approximately 280 input
+tokens per call — significantly fewer than the few-shot variants (v5 at ~430
+tokens, v6 at ~556 tokens) which achieved the same accuracy by loading multiple
+examples. For a high-volume SOC environment processing hundreds of alerts daily,
+that token difference compounds quickly into meaningful cost savings without
+any sacrifice in accuracy.
+ 
+v4 (one-shot FP) matched v8's accuracy at lower token cost, but it is not
+recommended for production. Its strong performance is dependent on the specific
+example provided matching the alert domain. In a real environment where alert
+types vary such as DLP, privilege escalation, lateral movement, etc., a single impossible
+travel FP example would not generalize. v8's institutional context block is
+domain-agnostic and can be extended with new organizational knowledge without
+restructuring the prompt.
+ 
+**Recommended deployment approach:**
+ 
+- Use v8_role_enriched as the base prompt for all identity and geo-anomaly alerts
+- Maintain the institutional context block as a living document updated when
+  new VPN exit nodes are added, travel notice policies change, or new FP
+  patterns are identified in production
+- Do not use schema-free variants (v1, v9) in any automated pipeline — the
+  lack of structured output makes downstream processing unreliable
+- Revisit chain-of-thought (v10) for low-volume, high-severity alerts where
+  explainability of reasoning is more important than throughput
+  
+**On rule tuning:** Both false positive alerts (DD-SIG-2025-0501 and
+DD-SIG-2025-0534) fired correctly at the SIEM layer. The FP classification
+was not a SIEM failure — it was a context gap. The SIEM rule has no access
+to travel notices or VPN topology. Rather than tuning the detection rules,
+the correct fix is the one this project demonstrates: enrich the downstream
+reasoning layer with the business context the SIEM cannot carry.
 
 ---
 
