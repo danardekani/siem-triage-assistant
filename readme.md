@@ -217,19 +217,13 @@ wrong verdict is a more serious failure than a low-confidence wrong verdict.
 
 ### Notable Failures
 
-<!-- PLACEHOLDER: Document at least one failure per low-scoring variant.
-     For each failure note:
-     - Which prompt variant
-     - Which alert
-     - What Claude got wrong
-     - Why you believe it failed (reasoning gap, bias, missing context)
-
-     Example format:
-     **v3_oneshot_tp × DD-SIG-2025-0501**
-     Claude returned TRUE_POSITIVE with HIGH confidence on the VP of Sales
-     traveling to London. The single TP example primed the model to pattern-match
-     on the geo anomaly without weighing the travel notice or recognized device.
--->
+**v1_zeroshot_baseline and v9_cot_freeform — partial parse failures**
+ 
+Both variants intentionally use no output schema. The script uses keyword
+matching to infer verdicts from free-form text. On 3 combined responses,
+Claude hedged in ways that produced no clean keyword hit — phrases like
+"this alert warrants closer examination" rather than a discrete verdict.
+These responses could not be scored programmatically.
 
 ---
 
