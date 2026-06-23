@@ -229,19 +229,18 @@ Now triage this alert:
  
 ALERT:
 """,
+
+# **Technique 3: FEW-SHOT**                                  
+# -------------------------------------------------------------
+# Multiple examples before the alert.                    
+# Variable between v5 and v6: example balance.           
+# Tests whether a balanced vs biased example set        
+# produces better calibrated verdicts.                   
  
-    # ╔══════════════════════════════════════════════════════════╗
-    # ║  TECHNIQUE 3: FEW-SHOT                                  ║
-    # ║  Multiple examples before the alert.                    ║
-    # ║  Variable between v5 and v6: example balance.           ║
-    # ║  Tests whether a balanced vs biased example set         ║
-    # ║  produces better calibrated verdicts.                   ║
-    # ╚══════════════════════════════════════════════════════════╝
- 
-    # v5 — Few-shot, TP-heavy (2 TP + 1 FP)
-    # Slightly biased toward TP. Tests if even mild imbalance
-    # causes overcalling on ambiguous or FP alerts.
-    "v5_fewshot_tp_heavy": f"""
+# v5 — Few-shot, TP-heavy (2 TP + 1 FP)
+# Slightly biased toward TP. Tests if even mild imbalance
+# causes overcalling on ambiguous or FP alerts.
+"v5_fewshot_tp_heavy": f"""
 You are a security analyst. Review the following security alert and produce
 a triage decision. Study the examples below before making your assessment.
  
@@ -257,11 +256,11 @@ Now triage this alert:
  
 ALERT:
 """,
- 
-    # v6 — Few-shot, balanced (2 TP + 2 FP)
-    # Equal representation. Hypothesis: produces the best
-    # calibration of all few-shot variants.
-    "v6_fewshot_balanced": f"""
+# v6 — Few-shot, balanced (2 TP + 2 FP)
+ # Equal representation. Hypothesis: produces the best
+ # calibration of all few-shot variants.
+
+ "v6_fewshot_balanced": f"""
 You are a security analyst. Review the following security alert and produce
 a triage decision. Study the examples below — they show both true positives
 and false positives to illustrate what distinguishes them.
@@ -280,32 +279,31 @@ Now triage this alert:
  
 ALERT:
 """,
+
+# **Technique 4: ROLE-BASED**                                
+# -------------------------------------------------------------
+# Persona assignment with domain expertise.             
+# Variable between v7 and v8: depth of context.         
+# Tests whether institutional knowledge beyond the role 
+# description meaningfully improves FP detection.        
+
  
-    # ╔══════════════════════════════════════════════════════════╗
-    # ║  TECHNIQUE 4: ROLE-BASED                                ║
-    # ║  Persona assignment with domain expertise.              ║
-    # ║  Variable between v7 and v8: depth of context.          ║
-    # ║  Tests whether institutional knowledge beyond the role  ║
-    # ║  description meaningfully improves FP detection.        ║
-    # ╚══════════════════════════════════════════════════════════╝
- 
-    # v7 — Role-based, persona only
-    # Strong analyst persona, no extra context injected.
-    # Tests what the role definition alone contributes.
-    "v7_role_basic": f"""
+# v7 — Role-based, persona only
+# Strong analyst persona, no extra context injected.
+# Tests what the role definition alone contributes.
+"v7_role_basic": f"""
 {ROLE}
  
 {OUTPUT_SCHEMA}
  
 ALERT:
 """,
- 
-    # v8 — Role-based + institutional context
-    # Same persona as v7 plus organizational knowledge the
-    # SIEM does not have: VPN topology, gateway routing,
-    # travel notice policy, insider risk indicators.
-    # Expected to be the strongest FP detection variant.
-    "v8_role_enriched": f"""
+# v8 — Role-based + institutional context
+# Same persona as v7 plus organizational knowledge the
+# SIEM does not have: VPN topology, gateway routing,
+# travel notice policy, insider risk indicators.
+# Expected to be the strongest FP detection variant.
+"v8_role_enriched": f"""
 {ROLE}
  
 Before triaging, review the following institutional context
@@ -332,20 +330,19 @@ ORGANIZATIONAL CONTEXT:
  
 ALERT:
 """,
+
+# **Technique 5: CHAIN-OF-THOUGHT**                          ║
+# -------------------------------------------------------------
+# Explicit step-by-step reasoning before verdict.        
+# Variable between v9 and v10: presence of output schema.
+# Tests whether schema constraint improves CoT output    
+# consistency without sacrificing reasoning quality.     
  
-    # ╔══════════════════════════════════════════════════════════╗
-    # ║  TECHNIQUE 5: CHAIN-OF-THOUGHT                          ║
-    # ║  Explicit step-by-step reasoning before verdict.        ║
-    # ║  Variable between v9 and v10: presence of output schema.║
-    # ║  Tests whether schema constraint improves CoT output    ║
-    # ║  consistency without sacrificing reasoning quality.     ║
-    # ╚══════════════════════════════════════════════════════════╝
- 
-    # v9 — Chain-of-thought, free-form output
-    # Same COT_STEPS as v10, no schema. Claude formats freely.
-    # Reveals raw reasoning quality — useful for finding cases
-    # where correct verdicts rest on flawed logic.
-    "v9_cot_freeform": f"""
+# v9 — Chain-of-thought, free-form output
+# Same COT_STEPS as v10, no schema. Claude formats freely.
+# Reveals raw reasoning quality — useful for finding cases
+# where correct verdicts rest on flawed logic.
+"v9_cot_freeform": f"""
 You are a Senior SOC Analyst. Triage the following security alert by
 reasoning through each piece of evidence step by step before reaching
 a verdict. Do not jump to conclusions.
@@ -355,11 +352,11 @@ a verdict. Do not jump to conclusions.
 ALERT:
 """,
  
-    # v10 — Chain-of-thought + structured output
-    # Same COT_STEPS as v9, adds OUTPUT_SCHEMA after reasoning.
-    # Hypothesis: best overall performer — sound reasoning AND
-    # consistent, parseable output.
-    "v10_cot_structured": f"""
+# v10 — Chain-of-thought + structured output
+# Same COT_STEPS as v9, adds OUTPUT_SCHEMA after reasoning.
+# Hypothesis: best overall performer — sound reasoning AND
+# consistent, parseable output.
+"v10_cot_structured": f"""
 You are a Senior SOC Analyst. Triage the following security alert using
 a two-step process. Do not jump to conclusions.
  
