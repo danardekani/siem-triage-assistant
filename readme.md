@@ -316,15 +316,16 @@ why the signal did not mean what it appeared to mean.
 
 ## What I Would Do Next
 
-<!-- PLACEHOLDER: 3-5 bullet points on Phase 2 ideas. Shows an experimenter
-     mindset — that this project is a starting point, not a finished product.
 
-     Ideas to consider:
-     - Test with real Datadog signal exports (anonymized)
-     - Add a retrieval layer: pull live travel notices and VPN IP lists at runtime
-     - Evaluate claude-sonnet vs claude-haiku on accuracy-to-cost tradeoff
-     - Build a feedback loop: analyst overrides feed back into few-shot examples
-     - Extend to additional rule types: DLP, privilege escalation, lateral movement
+- **Integrate SOC playbooks into the triage decision output.** Currently
+  Claude returns a verdict and a recommended action. The natural extension
+  is to attach the relevant response playbook directly to that output. Given
+  a TRUE_POSITIVE verdict on an impossible travel alert, Claude would return
+  not just "suspend session" but the full procedural context an analyst needs
+  to execute: what happened, where things currently stand, and the step-by-step
+  playbook to respond. This compresses the time between detection and containment
+  by eliminating the analyst's need to locate and cross-reference a separate
+  runbook — the procedure arrives with the verdict.
 -->
 
 ---
