@@ -173,6 +173,7 @@ wrong verdict is a more serious failure than a low-confidence wrong verdict.
 
 ### Verdict Accuracy Leaderboard
 
+```
 ════════════════════════════════════════════════════════════════════════
   VERDICT ACCURACY LEADERBOARD
 ════════════════════════════════════════════════════════════════════════
@@ -189,6 +190,7 @@ wrong verdict is a more serious failure than a low-confidence wrong verdict.
   9     v9_cot_freeform                2/3        █████████████░░░░░░░ 67%
   10    v3_oneshot_tp                  0/0        ░░░░░░░░░░░░░░░░░░░░ 0%
 ════════════════════════════════════════════════════════════════════════
+```
 
 ### Scorecard
 
