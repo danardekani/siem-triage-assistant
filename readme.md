@@ -346,6 +346,28 @@ upgrade tiers.
 
 ## What I Would Do Next
 
+- **Build the webhook integration.** The alert inputs in this project mirror
+  the JSON structure of real Datadog Security Signals. The natural next step
+  is a FastAPI endpoint that receives live signals via Datadog webhook,
+  passes them to Claude using the v8 prompt, and writes the triage decision
+  back to the signal as a Datadog comment — closing the loop from detection
+  to decision without analyst intervention on clear-cut cases.
+- **Test with anonymized real signal exports.** The mock alerts in this
+  project were constructed to test specific failure modes. Real Datadog
+  signals contain noise, missing fields, and edge cases that synthetic data
+  cannot replicate. Running this evaluation against anonymized production
+  signals would reveal failure modes that controlled test inputs cannot surface.
+- **Evaluate claude-sonnet-4-6 against claude-haiku-4-5 on accuracy and cost.**
+  Haiku was chosen for this evaluation for cost efficiency. For high-severity
+  alerts — particularly insider threat signals like DD-SIG-2025-0519 — the
+  reasoning depth of Sonnet may justify the higher token cost. A comparative
+  evaluation across model tiers would produce a tiered deployment recommendation:
+  Haiku for routine alerts, Sonnet for critical severity.
+- **Build a feedback loop from analyst overrides.** When an analyst overrides
+  Claude's verdict, that override is a labeled training signal. A production
+  system could capture those overrides and automatically promote them as new
+  few-shot examples in the prompt, progressively improving accuracy without
+  manual prompt engineering.
 
 - **Integrate SOC playbooks into the triage decision output.** Currently
   Claude returns a verdict and a recommended action. The natural extension
