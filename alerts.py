@@ -58,7 +58,7 @@ ALERTS = [
         "prior_alerts_90d":       0,
         "siem_confidence":        0.94,
 
-        # Ground truth — set by analyst (you), used for evaluation scoring
+        # Ground truth - set by analyst (me), used for evaluation scoring
         "_ground_truth": {
             "verdict":            "TRUE_POSITIVE",
             "confidence":         "HIGH",
