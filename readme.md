@@ -196,24 +196,24 @@ wrong verdict is a more serious failure than a low-confidence wrong verdict.
 ```
 
 ### Scorecard
-
-<!-- PLACEHOLDER: Insert your completed scorecard table here.
-     Rows = prompt variants, columns = scoring criteria.
-     Template:
+- Verdict Accuracy — did it reach the correct TP/FP/NI call?
+- Confidence Calibration — was the confidence level justified by the evidence, or was it overconfident on an ambiguous alert?
+- Reasoning Validity — was the logic sound, or did it reach the right answer for the wrong reasons?
+- Blast Radius — did it correctly scope who and what was affected?
+- Actionability — could an analyst execute the recommendation without additional research?
 
 | Variant | Verdict Accuracy | Confidence Calibration | Reasoning Validity | Blast Radius | Actionability | Total |
 |---|---|---|---|---|---|---|
-| v1_zeroshot_baseline     | /5 | /5 | /5 | /5 | /5 | /25 |
-| v2_zeroshot_structured   | /5 | /5 | /5 | /5 | /5 | /25 |
-| v3_oneshot_tp            | /5 | /5 | /5 | /5 | /5 | /25 |
-| v4_oneshot_fp            | /5 | /5 | /5 | /5 | /5 | /25 |
-| v5_fewshot_tp_heavy      | /5 | /5 | /5 | /5 | /5 | /25 |
-| v6_fewshot_balanced      | /5 | /5 | /5 | /5 | /5 | /25 |
-| v7_role_basic            | /5 | /5 | /5 | /5 | /5 | /25 |
-| v8_role_enriched         | /5 | /5 | /5 | /5 | /5 | /25 |
-| v9_cot_freeform          | /5 | /5 | /5 | /5 | /5 | /25 |
-| v10_cot_structured       | /5 | /5 | /5 | /5 | /5 | /25 |
--->
+| v1_zeroshot_baseline     | 0/5 | /5 | /5 | /5 | /5 | /25 |
+| v2_zeroshot_structured   | 4/5 | /5 | /5 | /5 | /5 | /25 |
+| v3_oneshot_tp            | N/A | /5 | /5 | /5 | /5 | /25 |
+| v4_oneshot_fp            | 5/5 | /5 | /5 | /5 | /5 | /25 |
+| v5_fewshot_tp_heavy      | 5/5 | /5 | /5 | /5 | /5 | /25 |
+| v6_fewshot_balanced      | 5/5 | /5 | /5 | /5 | /5 | /25 |
+| v7_role_basic            | 4/5 | /5 | /5 | /5 | /5 | /25 |
+| v8_role_enriched         | 5/5 | /5 | /5 | /5 | /5 | /25 |
+| v9_cot_freeform          | 2/5 | /5 | /5 | /5 | /5 | /25 |
+| v10_cot_structured       | 4/5 | /5 | /5 | /5 | /5 | /25 |
 
 ### Notable Failures
 
@@ -337,7 +337,7 @@ restructuring the prompt.
   lack of structured output makes downstream processing unreliable
 - Revisit chain-of-thought (v10) for low-volume, high-severity alerts where
   explainability of reasoning is more important than throughput
-  
+
 **On rule tuning:** Both false positive alerts (DD-SIG-2025-0501 and
 DD-SIG-2025-0534) fired correctly at the SIEM layer. The FP classification
 was not a SIEM failure — it was a context gap. The SIEM rule has no access
