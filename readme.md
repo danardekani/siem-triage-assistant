@@ -288,6 +288,7 @@ indicators. That context is what correctly resolved the two false positive
 alerts. The traveling VP and the VPN exit node is what v7 missed. The SIEM
 fired correctly on the geo signal. Claude with institutional context understood
 why the signal did not mean what it appeared to mean.
+
 ---
 
 ## Production Recommendation
