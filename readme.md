@@ -277,7 +277,17 @@ contained correct analysis but no parseable verdict. Format constraints
 have proved to be a functional requirement this project, and likely, 
 for any production triage tool.
 
-
+**5. Institutional context closed the FP gap that role alone
+could not**
+ 
+v7 (role only) scored 80%. v8 (role plus institutional context) scored 100%.
+The role description is identical between them. The only addition in v8 is
+organizational knowledge the SIEM does not have access to: VPN exit node
+topology, gateway routing behavior, travel notice policy, and insider risk
+indicators. That context is what correctly resolved the two false positive
+alerts. The traveling VP and the VPN exit node is what v7 missed. The SIEM
+fired correctly on the geo signal. Claude with institutional context understood
+why the signal did not mean what it appeared to mean.
 ---
 
 ## Production Recommendation
